@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addTodo, removeTodo } from "./action";
+import { addTodo } from "./action";
 
 const App = props => {
   const [todo, setTodo] = useState("");
@@ -21,13 +21,9 @@ const App = props => {
     setTodo("");
   };
 
-  const handleDelete = index => {
-    props.removeTodo(index);
-  };
-
-  // const handleEdit = index => {
-
-  // }
+  // const handleDelete = id => {
+  //   props.removeTodo(id);
+  // };
 
   return (
     <div className="App">
@@ -39,13 +35,14 @@ const App = props => {
       <br />
       <ul>
         {props.todos.length > 0 &&
-          props.todos.map((list, index) => (
-            <li key={`list-${new Date().valueOf()}`}>
-              {list} <button name="edit">Edit</button>
-              <button name="delete" onClick={event => handleDelete(index)}>
+          props.todos.map(list => (
+            <li key={`list-${list.id}`}>
+              {list.description}
+              {/* <button name="edit">Edit</button> */}
+              {/* <button name="delete" onClick={event => handleDelete(list.id)}>
                 {" "}
                 Delete
-              </button>
+              </button> */}
             </li>
           ))}
       </ul>
@@ -55,8 +52,8 @@ const App = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTodo: todos => dispatch(addTodo(todos)),
-    removeTodo: todoList => dispatch(removeTodo(todoList))
+    addTodo: todos => dispatch(addTodo(todos))
+    //removeTodo: todoList => dispatch(removeTodo(todoList))
   };
 };
 
