@@ -4,3 +4,10 @@ export const addTodo = todo => {
     payload: todo
   };
 };
+
+export const removeTodo = index => {
+  return {
+    type: "REMOVE_TODO",
+    payload: index
+  };
+};
